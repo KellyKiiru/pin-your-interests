@@ -6,5 +6,6 @@ from django.http import HttpResponse
 # Create your views here.
 
 def homepage(request):
-    return render (request,'index.html')
+    title='Pin your Interests'
+    return render (request,'index.html', {"title":title})
 

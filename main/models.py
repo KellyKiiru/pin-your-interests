@@ -30,7 +30,7 @@ class Pin(models.Model):
     pin_name=models.CharField(max_length=30)
     pin_description=models.TextField()
     category=models.ManyToManyField(category)
-    Location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    Location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
     pin_image=models.ImageField(upload_to='pins/', unique=True)
             
     class Meta:
@@ -38,3 +38,4 @@ class Pin(models.Model):
     
     def save_pin(self):
         self.save()
+        
