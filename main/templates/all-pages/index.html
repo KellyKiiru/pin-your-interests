@@ -13,7 +13,11 @@
                 <div class="card-body">
                     <h5 class="card-title">{{pin.pin_name}}</h5>
                     <p class="card-text"> {{pin.pin_description}}</p>
-
+                    <p>
+                        {% for category in pins.category.all %}
+                <span class="badge badge-primary" style="font-size:1em;">{{category}}</span>
+                        {% endfor %}
+                    </p>
                 </div>
             </div>
         </div>

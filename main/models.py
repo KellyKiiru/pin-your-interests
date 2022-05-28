@@ -33,9 +33,7 @@ class Pin(models.Model):
    
     pin_location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
     pin_image=models.ImageField(upload_to='pins/', unique=True)
-            
-    class Meta:
-        ordering = ['pin_name']
+    
     
     def save_pin(self):
         self.save()
@@ -46,9 +44,13 @@ class Pin(models.Model):
         return images 
     
     @classmethod
-    def search_pin_by_category(cls,category):
-        images=cls.objects.filter(category__ic=category)
-        return images
+    def search_by_category(cls,search_term):
+        pins = cls.objects.filter(category__name__contains = search_term)
+        if len(pins) < 1:
+            pin_images = cls.objects.filter(category__name__contains = search_term.capitalize())
+            return pin_images
+        else:
+            return pins
     @classmethod
     def search_pin_by_location(cls,pin_location):
         images= cls.objects.filter(location__icontains=pin_location)
