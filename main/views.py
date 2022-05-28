@@ -35,7 +35,7 @@ def search_results(request):
         searched_pin = Pin.search_by_title(search_term)
         message = f'{search_term}'
         
-        return render(request,'all-pages/search.html',{"message": message,"pin":searched_pin})
+        return render(request,'all-pages/search.html',{"message": message,"pin":searched_pin,"search_term":search_term})
     else:
         message= "You haven't searched for any term"
         return render(request,'all-pages/search.html',{"message":message})

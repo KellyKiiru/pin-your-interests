@@ -5,30 +5,33 @@
 .<div class="container">
     <div class="row">
         {% if pin %}
-            <h2>
-                Found: {{pin|length}} of search term {{message}}
-            </h2>
+            <h3>
+                Found: {{pin|length}} pins for search term "{{message}}"
+            </h3>
             {% else %}
-            <h2>
-                Found 0 pins for the search term.
-            </h2>
+            <h4>
+                Found 0 pins for the search term {{message}}.
+            </h4>
             {% endif %}
     </div>
     <div class="row">
-    {% if pin %}
-        {% for pin in pin %}
+        {% if pin %}
+            {% for pin in pin %}
         <div class="col-sm-6 col-md-3">
-            <h1>
-                {{pin.title}}
-            </h1>
+            <div class="card" style="height: fit-content; width: fit-content;">
+                <a href=" {% url 'show_single_pin' pin.id%} "><img src="{{pin.pin_image.url}}" alt="{{pin.pin_name}}" data-toggle="modal" data-target="#{{pin.id}}"></a>
+                <div class="card-body">
+                    <h3>
+                        {{pin.pin_name}}
+                    </h3>
+                    <p class="card-text"> {{pin.pin_description}}</p>
+                </div>
+            </div>
         </div>
-        <div>
-            <a href=" {% url 'show_single_pin' pin.id%} "><img src="{{pin.pin_image.url}}" alt="image"></a>
-
-        </div>
-        {% endfor %}
-    {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
+    
 </div>
 
 {% endblock %}

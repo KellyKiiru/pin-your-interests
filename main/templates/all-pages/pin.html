@@ -1,20 +1,24 @@
 {%extends 'all-pages/base.html'%}
 
+
 {% block content %}
 
 <div class="container">
 
-    <div class="col-md-4">
-        <div class="row">
-            <div class="card" style="width: 18rem;">
-                <img style="border-radius: 50%;" class="card-img-top" src="{{pin.pin_image.url}}" alt="{{pin.pin_name}}">
-                <div class="card-body">
-                  <h3 class="card-title">{{pin.pin_name}}</h3>
-                  <p class="card-text">{{pin.pin_description}}</p>
-                </div>
-              </div>
+  <div class="col-md-4">
+    <div class="row">
+      <div class="card single-pin" style="width: 18rem">
+        <img style="border-radius: 50%;" class="card-img-top" src="{{pin.pin_image.url}}" alt="{{pin.pin_name}}">
+
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <h3 class="card-title">{{pin.pin_name}}</h3>
+          <p class="card-text">{{pin.pin_description}}</p>
         </div>
+      </div>
     </div>
+  </div>
 
 </div>
 
