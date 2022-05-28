@@ -56,5 +56,5 @@ class Pin(models.Model):
     
     @classmethod
     def search_by_title(cls,search_term):
-        news = cls.objects.filter(title__icontains=search_term)
-        return news
+        pin = cls.objects.filter(pin_name__icontains=search_term)
+        return pin

@@ -6,9 +6,9 @@
 
 {% block content %}
 <div id="cover">
-    <form method="get" action="">
+    <form method="get" role="search" action="{% url 'search_results' %}">
       <div class="tb">
-        <div class="td"><input type="text" placeholder="Search" required></div>
+        <div class="td"><input type="text" class="form-control" placeholder="Search" name="pin" required></div>
         <div class="td" id="s-cover">
           <button type="submit">
             <div id="s-circle"></div>

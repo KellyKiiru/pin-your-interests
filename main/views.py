@@ -28,3 +28,13 @@ def show_single_pin(request, pin_id):
     except ObjectDoesNotExist:
         raise Http404()
     return render(request,"all-pages/pin.html", {"pin":pin})
+def search_results(request):
+    if 'pin' in request.GET and request.GET.get['pin']:
+        search_term = request.GET.get('pin')
+        searched_pin = Pin.search_by_title(search_term)
+        message = f'{search_term}'
+        
+        return render(request,'all-pages/search.html',{"message": message,"pin":searched_pin})
+    else:
+        message= "You haven't searched for any term"
+        return render(request,'all-pages/search.html',{"message":message})
