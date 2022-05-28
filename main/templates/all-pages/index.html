@@ -7,7 +7,7 @@
         {% for pin in images %}
         <div class="col-md-4 ">
             <div class="card" style="height: fit-content; width: fit-content;">
-                <img style="height:50vh;" class="card-img-top" src=" {{pin.pin_image.url}} " alt=" {{pin.pin_name}} ">
+                <a href=" {% url 'show_single_pin' pin.id %} "><img style="height:50vh;" class="card-img-top" src=" {{pin.pin_image.url}} " alt=" {{pin.pin_name}} "></a>
                 <div class="card-body">
                     <h5 class="card-title">{{pin.pin_name}}</h5>
                     <p class="card-text"> {{pin.pin_description}}</p>
