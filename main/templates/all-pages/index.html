@@ -1,7 +1,7 @@
 {% extends 'all-pages/base.html' %}
 {% block content %}
 {{block.super}}
-
+{% include 'all-pages/searchbar.html' %}
 <div class="container">
     <div class="row">
         {% for pin in images %}
