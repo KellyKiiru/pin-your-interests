@@ -1,0 +1,34 @@
+{%extends 'all-pages/base.html'%}
+
+{% block content %}
+
+.<div class="container">
+    <div class="row">
+        {% if pin %}
+            <h2>
+                Found: {{pin|length}} of search term {{message}}
+            </h2>
+            {% else %}
+            <h2>
+                Found 0 pins for the search term.
+            </h2>
+            {% endif %}
+    </div>
+    <div class="row">
+    {% if pin %}
+        {% for pin in pin %}
+        <div class="col-sm-6 col-md-3">
+            <h1>
+                {{pin.title}}
+            </h1>
+        </div>
+        <div>
+            <a href=" {% url 'show_single_pin' pin.id%} "><img src="{{pin.pin_image.url}}" alt="image"></a>
+
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>
+
+{% endblock %}
