@@ -1,0 +1,7 @@
+{% extends 'all-pages/base.html' %}
+{% block content %}
+{{block.super}}
+    {% for image in images %}
+    <h1> {{image.pin_name}} </h1>
+    {% endfor %}
+{% endblock %}

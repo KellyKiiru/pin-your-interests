@@ -29,8 +29,9 @@ class category(models.Model):
 class Pin(models.Model):
     pin_name=models.CharField(max_length=30)
     pin_description=models.TextField()
-    category=models.ManyToManyField(category)
-    Location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
+    category=models.ForeignKey(category, on_delete=models.CASCADE, null=True, blank=True)
+   
+    pin_location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
     pin_image=models.ImageField(upload_to='pins/', unique=True)
             
     class Meta:
@@ -39,3 +40,21 @@ class Pin(models.Model):
     def save_pin(self):
         self.save()
         
+    @classmethod
+    def display_pins(cls):
+        images=cls.objects.all()
+        return images 
+    
+    @classmethod
+    def search_pin_by_category(cls,category):
+        images=cls.objects.filter(category__ic=category)
+        return images
+    @classmethod
+    def search_pin_by_location(cls,pin_location):
+        images= cls.objects.filter(location__icontains=pin_location)
+        return images
+    
+    @classmethod
+    def search_by_title(cls,search_term):
+        news = cls.objects.filter(title__icontains=search_term)
+        return news
