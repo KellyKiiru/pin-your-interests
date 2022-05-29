@@ -3,13 +3,13 @@
 {% block content %}
 
 {{block.super}}
+<div class="scrollmenu">
+    {% for location in locations %}
+    <a href="{% url 'location' location.id %}">{{location}}</a>
+    {% endfor %}
+</div>
 
 <div class="container">
-    <div class="scrollmenu">
-        {% for location in locationse %}
-        <a href="{% url 'search_location' location.id %}">{{location}}</a>
-        {% endfor %}
-    </div>
     <div class="row">
         {% for pin in images %}
         <div class="col-md-4 ">
@@ -19,7 +19,7 @@
                     <h5 class="card-title">Title: {{pin.pin_name}}</h5>
                     <p class="card-text"> <u>Caption:</u> <br>{{pin.pin_description}}</p>
                     <p class="card-text">Category: <u><strong>{{pin.category}}</strong></u></p>
-                    <p class="card-text">Taken in: {{pin.pin_location}}</p>
+                    <p class="card-text">Taken in: {{pin.location}}</p>
                 </div>
             </div>
         </div>

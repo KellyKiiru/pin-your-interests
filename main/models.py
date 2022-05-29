@@ -31,7 +31,7 @@ class Pin(models.Model):
     pin_description=models.TextField()
     category=models.ForeignKey(category, on_delete=models.CASCADE, null=True, blank=True)
    
-    pin_location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
     pin_image=models.ImageField(upload_to='pins/', unique=True)
     
     

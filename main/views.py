@@ -28,7 +28,7 @@ def search_pin_by_category(request):
         
         return render(request,'all-pages/search.html',{"pins":searched_images,"category":search_term,"message":message})
     
-def search_pin_by_location(request,location):
+def location(request,location):
     locations = Location.objects.all()
     selected_location = Location.objects.get(id = location)
     pins = Pin.objects.filter(location = selected_location.id)

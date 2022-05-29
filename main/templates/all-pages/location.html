@@ -1,1 +1,17 @@
-<h1>fhekjdnwfm;lkewqs</h1>
+{% extends 'all-pages/base.html'%}
+{%block content%}
+{{block.super}}
+<div class="scrollmenu">
+  {%for location in locations %}
+  <a href="{% url 'location' location.id %}">{{location}}</a>
+  {% endfor %}
+</div>
+<div>
+    <p>{{location.location}}</p>
+    {% for pin in pins %}
+    <img style="height:50vh;"src="{{pin.pin_image.url}}" alt="{{pin.pin_name}}">
+    {% endfor %}
+
+</div>
+
+{%endblock%}
