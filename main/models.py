@@ -52,9 +52,10 @@ class Pin(models.Model):
         else:
             return pins
     @classmethod
-    def search_pin_by_location(cls,pin_location):
-        images= cls.objects.filter(location__icontains=pin_location)
-        return images
+    def filter_by_location(cls,search_term):
+        location=Location.objects.get(location=search_term )
+        pins= cls.objects.filter(location=location)
+        return pins
     
     @classmethod
     def search_by_title(cls,search_term):

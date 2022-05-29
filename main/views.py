@@ -10,7 +10,8 @@ from django.core.exceptions import ObjectDoesNotExist
 def homepage(request):
     title='Pin your Interests'
     images=Pin.display_pins()
-    return render (request,'all-pages/index.html', {"title":title, "images":images})
+    locations = Location.objects.all()
+    return render (request,'all-pages/index.html', {"title":title, "images":images, "locations":locations})
 
 def show_single_pin(request, pin_id):
     try:
@@ -19,17 +20,6 @@ def show_single_pin(request, pin_id):
         raise Http404()
     return render(request,"all-pages/pin.html", {"pin":pin})
 
-#def search_results(request):
-#    if 'pin' in request.GET and request.GET['pin']:
-#        search_term = request.GET.get('pin')
-#        searched_pin = Pin.search_by_title(search_term)
-#        message = f'{search_term}'
-        
-#        return render(request,'all-pages/search.html',{"message": message,"pin":searched_pin,"search_term":search_term})
-#    else:
-#        message= "You haven't searched for any category"
-#        return render(request,'all-pages/search.html',{"message":message})
-    
 def search_pin_by_category(request):
     if 'category' in request.GET and request.GET["category"]:
         search_term = request.GET.get("category")
@@ -37,3 +27,9 @@ def search_pin_by_category(request):
         message = f'{search_term}'
         
         return render(request,'all-pages/search.html',{"pins":searched_images,"category":search_term,"message":message})
+    
+def search_pin_by_location(request,location):
+    locations = Location.objects.all()
+    selected_location = Location.objects.get(id = location)
+    pins = Pin.objects.filter(location = selected_location.id)
+    return render(request, 'all-pages/location.html', {"location":selected_location,"locations":locations,"pins":pins})
