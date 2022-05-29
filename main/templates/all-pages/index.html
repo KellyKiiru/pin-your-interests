@@ -3,28 +3,46 @@
 {% block content %}
 
 {{block.super}}
-<div class="scrollmenu">
-    {% for location in locations %}
-    <a href="{% url 'location' location.id %}">{{location}}</a>
-    {% endfor %}
-</div>
-
-<div class="container">
-    <div class="row">
-        {% for pin in images %}
-        <div class="col-md-4 ">
-            <div class="card" style="height: fit-content; width: fit-content;">
-                <img style="height:50vh;" class="card-img-top img-fluid"  data-toggle="modal" data-target="#{{pin.id}}" src=" {{pin.pin_image.url}} " alt=" {{pin.pin_name}} ">
-                <div class="card-body">
-                    <h5 class="card-title">Title: {{pin.pin_name}}</h5>
-                    <p class="card-text"> <u>Caption:</u> <br>{{pin.pin_description}}</p>
-                    <p class="card-text">Category: <u><strong>{{pin.category}}</strong></u></p>
-                    <p class="card-text">Taken in: {{pin.location}}</p>
+<div class="container-fluid gallery-section mt-4">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for pin in images %}
+                <div class="col-md-4 ">
+                    <div class="card" style="height: fit-content; width: fit-content;">
+                        <img style="height: 50vh;" class="card-img-top img-responsive" data-toggle="modal"
+                            data-target="#{{pin.id}}" src=" {{pin.pin_image.url}} " alt=" {{pin.pin_name}} ">
+                        <div class="card-body">
+                        </div>
+                    </div>
                 </div>
+                <!-- Modal -->
+                <div class="modal fade" id="{{pin.id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="card-title">Title: {{pin.pin_name}}</h5>
+                                <p class="card-text"> <u>Caption:</u><br>{{pin.pin_description}}</p>
+                                <p class="card-text">Category: <u><strong>{{pin.category}}</strong></u></p>
+                                <p class="card-text">Taken in: {{pin.location}}</p>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img height="100px" src="{{pin.pin_image.url}}" alt="">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
-        
-        {% endfor %}
     </div>
 </div>
 {% endblock %}
