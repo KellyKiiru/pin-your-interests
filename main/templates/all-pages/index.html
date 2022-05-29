@@ -11,13 +11,9 @@
             <div class="card" style="height: fit-content; width: fit-content;">
                 <a href=" {% url 'show_single_pin' pin.id %} "><img style="height:50vh;" class="card-img-top" src=" {{pin.pin_image.url}} " alt=" {{pin.pin_name}} "></a>
                 <div class="card-body">
-                    <h5 class="card-title">{{pin.pin_name}}</h5>
-                    <p class="card-text"> {{pin.pin_description}}</p>
-                    <p>
-                        {% for category in pins.category.all %}
-                <span class="badge badge-primary" style="font-size:1em;">{{category}}</span>
-                        {% endfor %}
-                    </p>
+                    <h5 class="card-title">Title: {{pin.pin_name}}</h5>
+                    <p class="card-text"> <u>Caption:</u> <br>{{pin.pin_description}}</p>
+                    <p class="card-text">Category: <u><strong>{{pin.category}}</strong></u></p>
                 </div>
             </div>
         </div>
