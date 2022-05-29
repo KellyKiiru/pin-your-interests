@@ -7,10 +7,24 @@
   {% endfor %}
 </div>
 <div>
-    <p>{{location.location}}</p>
-    {% for pin in pins %}
-    <img style="height:50vh;"src="{{pin.pin_image.url}}" alt="{{pin.pin_name}}">
-    {% endfor %}
+    <h2> All photos taken in :
+      {{location.location}}
+    </h2>
+    <div class="row">
+      {% for pin in pins %}
+      <div class="col-md-4 ">
+        <div class="card" style="height: fit-content; width: fit-content;">
+            <img style="height:50vh;" class="card-img-top img-fluid"  data-toggle="modal" data-target="#{{pin.id}}" src=" {{pin.pin_image.url}} " alt=" {{pin.pin_name}} ">
+            <div class="card-body">
+                <h5 class="card-title">Title: {{pin.pin_name}}</h5>
+                <p class="card-text"> <u>Caption:</u> <br>{{pin.pin_description}}</p>
+                <p class="card-text">Category: <u><strong>{{pin.category}}</strong></u></p>
+                <p class="card-text">Taken in: {{pin.location}}</p>
+            </div>
+        </div>
+        </div>
+      {% endfor %}
+    </div>
 
 </div>
 
