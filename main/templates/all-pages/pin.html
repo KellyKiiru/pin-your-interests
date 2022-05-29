@@ -8,7 +8,8 @@
   <div class="col-md-4">
     <div class="row">
       <div class="card single-pin" style="width: 18rem">
-        <img style="border-radius: 50%;" class="card-img-top" src="{{pin.pin_image.url}}" alt="{{pin.pin_name}}">
+        <img data-toggle="modal"
+        data-target="#{{pin.id}}"  style="border-radius: 50%;" class="card-img-top" src="{{pin.pin_image.url}}" alt="{{pin.pin_name}}">
 
       </div>
       <div class="col-md-4">
@@ -20,31 +21,40 @@
     </div>
   </div>
 
-</div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+</div><!-- Modal -->
+<div class="modal fade" id="{{pin.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="card-title">Title: {{pin.pin_name}}</h5>
+                <p class="card-text"> <u>Caption:</u><br>{{pin.pin_description}}</p>
+                <p class="card-text">Category: <u><strong>{{pin.category}}</strong></u></p>
+                <p class="card-text">Taken in: {{pin.location}}</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img height="100px" src="{{pin.pin_image.url}}" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"
+                    onclick="copy_pin_link('{{ pin.pin_image.url }}'),myFunction()" id="copy_pin_link">copy link</button>
+               
+            </div>
+            
+        </div>
     </div>
-  </div>
 </div>
+<script type="text/javascript">
+    function copy_pin_link(data) {
+        navigator.clipboard.writeText(window.location.origin + data)
+    }
+    function myFunction() {
+        alert("Link copied to clipboard! Paste in new browser window to view");
+    }
+</script>
 
 {% endblock %}
