@@ -10,7 +10,7 @@
   
   body {
     margin: 0;
-    background-color: #6c757d;
+    box-sizing: border-box;
   }
   
   .tb {
