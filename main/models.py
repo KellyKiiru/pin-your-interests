@@ -45,9 +45,9 @@ class Pin(models.Model):
     
     @classmethod
     def search_by_category(cls,search_term):
-        pins = cls.objects.filter(category__name__contains = search_term)
+        pins = cls.objects.filter(category__category_name__contains = search_term)
         if len(pins) < 1:
-            pin_images = cls.objects.filter(category__name__contains = search_term.capitalize())
+            pin_images = cls.objects.filter(category__category_name__contains = search_term)
             return pin_images
         else:
             return pins
