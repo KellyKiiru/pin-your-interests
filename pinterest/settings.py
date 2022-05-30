@@ -15,6 +15,9 @@ import os
 from decouple import config,Csv
 import dj_database_url
 import django_on_heroku
+#import cloudinary
+#import cloudinary.uploader
+#import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    #'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -97,6 +101,14 @@ else:
            default=config('DATABASE_URL')
        )
    }
+
+# adding config
+#cloudinary.config( 
+#  cloud_name = "https-bishaciakwa-herokuapp-com", 
+#  api_key = "567835738243226", 
+#  api_secret = "7w7uDXQEVBty3fgobXCmup7R2dE" 
+#)
+
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
