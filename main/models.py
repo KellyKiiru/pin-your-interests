@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import get_object_or_404
 
 
 # Create your models here.
@@ -37,6 +38,11 @@ class Pin(models.Model):
     
     def save_pin(self):
         self.save()
+        
+    @classmethod    
+    def delete_image(cls, pin_id):
+        image_to_delete = get_object_or_404(cls, id=pin_id)
+        image_to_delete.delete()
         
     @classmethod
     def display_pins(cls):
