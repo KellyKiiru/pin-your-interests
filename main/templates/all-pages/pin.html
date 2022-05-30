@@ -8,14 +8,19 @@
   <div class="col-md-4">
     <div class="row">
       <div class="card single-pin" style="width: 18rem">
-        <img data-toggle="modal" data-target="#{{pin.id}}" style="border-radius: 50%;" class="card-img-top"
+        <img data-toggle="modal" data-target="#{{pin.id}}" class="card-img-top"
           src="{{pin.pin_image.url}}" alt="{{pin.pin_name}}">
 
       </div>
       <div class="col-md-4">
         <div class="card-body">
-          <h3 class="card-title">{{pin.pin_name}}</h3>
-          <p class="card-text">{{pin.pin_description}}</p>
+          <div>
+            <h5 class="card-title">Title: {{pin.pin_name}}</h5>
+        </div>
+        <div>
+            <p class="card-text">Category: <u><strong>{{pin.category}}</strong></u></p>
+            <p class="card-text">Taken in: {{pin.location}}</p>
+        </div>
         </div>
       </div>
     </div>
