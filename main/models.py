@@ -61,3 +61,10 @@ class Pin(models.Model):
     def search_by_title(cls,search_term):
         pin = cls.objects.filter(pin_name__icontains=search_term)
         return pin
+    
+    def update_image(self, new_name, new_description, new_image, new_category, new_location):
+        self.pin_image = new_image
+        self.pin_name = new_name
+        self.location = new_location
+        self.pin_description = new_description
+        self.category = new_category
