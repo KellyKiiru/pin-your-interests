@@ -1,0 +1,23 @@
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/searchbar.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="cover">
+    <form method="get" role="search" action="{% url 'search_results' %}">
+      <div class="tb">
+        <div class="td">
+          <input type="text" class="form-control" placeholder="Search category" name="category" required>
+        </div>
+        <div class="td" id="s-cover">
+          <button type="submit">
+            <div id="s-circle"></div>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+{%endblock %}

@@ -1,0 +1,70 @@
+{% extends 'all-pages/base.html' %}
+
+{% block content %}
+
+{{block.super}}
+<div class="container-fluid gallery-section mt-4">
+    <div class="container-fluid">
+        <div class="col-md-4">
+            <a href="http://127.0.0.1:8000/admin">Click to add pins</a>
+            <p>username: moringa</p>
+            <p>password:Access</p>
+        </div>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for pin in images %}
+                <div class="col-md-4 ">
+                    <div class="card" style="height: fit-content; width: fit-content;">
+                        <img style="height: 50vh;" class="card-img-top img-responsive" data-toggle="modal"
+                            data-target="#{{pin.id}}" src=" {{pin.pin_image.url}} " alt=" {{pin.pin_name}} ">
+                        <div class="card-body">
+                            <p class="card-text">Category: <u><strong>{{pin.category}}</strong></u></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div  class="modal fade" id="{{pin.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document" >
+                        <div style=" background-color: grey; background-repeat: no-repeat; background-size: contain; background-position: center; background-attachment: fixed; color:white ;" class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="card-title">Title: {{pin.pin_name}}</h5>
+                                </div>
+                                <div>
+                                    <p class="card-text">Category: <u><strong>{{pin.category}}</strong></u></p>
+                                    <p class="card-text">Taken in: {{pin.location}}</p>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="display: flex;flex-direction: row; justify-content: space-around;">
+                                <img height="250px" src="{{pin.pin_image.url}}" alt="{{pin.pin_name.}}" style="border-radius: 5px;">
+                                <p class="card-text"> <u>Caption:</u><br>{{pin.pin_description}}</p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary"
+                                    onclick="copy_pin_link('{{ pin.pin_image.url }}'),myFunction()" id="copy_pin_link">copy link</button>
+                               
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    function copy_pin_link(data) {
+                        navigator.clipboard.writeText(window.location.origin + data)
+                    }
+                    function myFunction() {
+                        alert("Link copied to clipboard! Paste in new browser window to view");
+                    }
+                </script>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
